@@ -1,0 +1,18 @@
+# General aliases
+
+# Fix certain colors being unreadable. Anything with a background should be
+# underlined instead
+#LS_COLORS=$LS_COLORS:'pi=33;04:bd=33;04;01:cd=33;04;01:or=31;04;01:su=37;04:ca=30;04:tw=30;04:ow=34;04:sg=30;04:st=37;04:' ; export LS_COLORS
+
+# some more ls aliases
+alias ls='ls $LS_OPTIONS -l'
+alias ll='ls $LS_OPTIONS -l'
+alias la='ls $LS_OPTIONS -A'
+alias l='ls $LS_OPTIONS -lA'
+
+# make nvim default for vim
+alias vim="nvim"
+
+
+
+# vi:syntax=sh

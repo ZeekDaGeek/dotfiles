@@ -1,0 +1,42 @@
+- defaults:
+    link:
+        relink: true
+        create: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+
+## Terminals
+
+# bash configs
+- link:
+    ~/.bashrc: bash/wsl
+
+# zsh configs
+- link:
+    ~/.zshenv: zsh/zshenv
+    ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/zsh/clean-custom.zsh-theme: zsh/clean-custom.zsh-theme
+
+# aliases
+- link:
+    ~/.config/aliases/general: aliases/general
+
+
+## Terminal managers
+
+# tmux configs
+- link:
+    ~/.tmux.conf: tmux/tmux.conf
+
+
+## Editors
+
+# neovim configs
+- link:
+    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/sessions: neovim/sessions_wsl
+
+
