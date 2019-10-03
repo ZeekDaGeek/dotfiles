@@ -37,6 +37,6 @@
 # neovim configs
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
-    ~/.config/sessions: neovim/sessions_wsl
+    #~/.config/sessions: neovim/sessions_wsl
 
 
