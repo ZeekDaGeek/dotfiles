@@ -8,5 +8,8 @@ export ZPLUG_HOME="$HOME/.config/zsh/zplug"
 # Default programs
 export EDITOR="nvim"
 
+# WeeChat
+export WEECHAT_HOME="$HOME/.config/weechat"
+
 
 # vi:syntax=config 
