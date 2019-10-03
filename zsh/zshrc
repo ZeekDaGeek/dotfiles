@@ -37,9 +37,6 @@ HISTSIZE=1000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.config/zsh/.zsh_history
 
-# Load aliases
-source "$HOME/.config/aliases/general"
-
 
 
 # =============================================================================
@@ -97,3 +94,10 @@ fi
 zplug load
 
 source ~/.config/zsh/clean-custom.zsh-theme
+
+# Load aliases
+source "$HOME/.config/aliases/general"
+
+# Load abbreviations
+source "$HOME/.config/abbr/general.zsh"
+

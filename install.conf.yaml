@@ -24,6 +24,10 @@
 - link:
     ~/.config/aliases/general: aliases/general
 
+# abbr
+- link:
+    ~/.config/abbr/general.zsh: abbr/general.zsh
+
 
 ## Terminal managers
 
