@@ -19,6 +19,9 @@ Plug 'sickill/vim-pasta'                                    " Handle whitespace 
 Plug 'vim-syntastic/syntastic'                              " Validating syntax and offering suggestions @TODO
 Plug 'ervandew/supertab'                                    " Tab in insert for autocompletion, context aware
 Plug 'kien/ctrlp.vim'                                       " Open files easier with Ctrl+p
+Plug 'rstacruz/sparkup'                                     " Expand short hand for html (eg. div>ul>li*5)
+Plug 'tpope/vim-surround'                                   " Add the verb s for surround (ds' = delete surrounding ')
+Plug 'mhinz/vim-signify'                                    " Add gutter for git differences.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
