@@ -52,6 +52,7 @@ highlight VertSplit ctermbg=none guibg=none
 set number                          " show line numbers
 set numberwidth=4                   " line numbers should be 4 wide
 set relativenumber                  " show number relative to current line.
+set signcolumn=yes                  " always show sign column
 set wrap                            " wrap lines
 set encoding=utf-8                  " set encoding to UTF-8 (default for nvim?)
 set wildmenu                        " menu for tab completion of command menu
@@ -130,6 +131,11 @@ let g:startify_bookmarks = [
 
 "" restore_view.vim
 set viewoptions=cursor,folds,slash,unix
+
+"" vim-signify
+let g:signify_vcs_list=['git']
+let g:signify_realtime=1
+
 
 
 """" Key bindings
