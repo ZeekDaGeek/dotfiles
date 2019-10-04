@@ -22,6 +22,7 @@ Plug 'kien/ctrlp.vim'                                       " Open files easier 
 Plug 'rstacruz/sparkup'                                     " Expand short hand for html (eg. div>ul>li*5)
 Plug 'tpope/vim-surround'                                   " Add the verb s for surround (ds' = delete surrounding ')
 Plug 'mhinz/vim-signify'                                    " Add gutter for git differences.
+Plug 'jiangmiao/auto-pairs'                                 " Make pairs of quotes / brackets easier.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
