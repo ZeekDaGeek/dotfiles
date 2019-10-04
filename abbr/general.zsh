@@ -2,4 +2,4 @@
 # https://github.com/momo-lab/zsh-abbrev-alias
 
 # Test abbr
-abbrev-alias -g zshcc="$HOME/.config/zsh/.zshrc"
+abbrev-alias -g zrc="$HOME/.config/zsh/.zshrc"

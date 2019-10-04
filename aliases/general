@@ -8,8 +8,8 @@ LS_COLORS=$LS_COLORS:'pi=33;04:bd=33;04;01:cd=33;04;01:or=31;04;01:su=37;04:ca=3
 # some more ls aliases
 alias ls='ls $LS_OPTIONS -l'
 alias ll='ls $LS_OPTIONS -l'
-alias la='ls $LS_OPTIONS -A'
-alias l='ls $LS_OPTIONS -lA'
+alias la='ls $LS_OPTIONS -a'
+alias l='ls $LS_OPTIONS -la'
 
 # make nvim default for vim
 alias vim="nvim"
