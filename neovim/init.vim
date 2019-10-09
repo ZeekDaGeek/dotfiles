@@ -23,6 +23,7 @@ Plug 'rstacruz/sparkup'                                     " Expand short hand 
 Plug 'tpope/vim-surround'                                   " Add the verb s for surround (ds' = delete surrounding ')
 Plug 'mhinz/vim-signify'                                    " Add gutter for git differences.
 Plug 'jiangmiao/auto-pairs'                                 " Make pairs of quotes / brackets easier.
+Plug 'godlygeek/tabular'                                    " Space align text using :Tab
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
@@ -80,6 +81,10 @@ set splitright                      " open veritical splits to the right by defa
 
 scriptencoding utf-8
 set encoding=utf-8
+
+" Better git diff algorithm (usually)
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
 
 
 
