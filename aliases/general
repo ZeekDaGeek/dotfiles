@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # General aliases
 
 # Fix certain colors being unreadable. Anything with a background should be
@@ -5,11 +7,21 @@
 export LS_OPTIONS='--color=auto'
 LS_COLORS=$LS_COLORS:'pi=33;04:bd=33;04;01:cd=33;04;01:or=31;04;01:su=37;04:ca=30;04:tw=30;04:ow=34;04:sg=30;04:st=37;04:' ; export LS_COLORS
 
-# some more ls aliases
-alias ls='ls $LS_OPTIONS -l'
-alias ll='ls $LS_OPTIONS -l'
-alias la='ls $LS_OPTIONS -a'
-alias l='ls $LS_OPTIONS -la'
+# Check if exa is installed.
+if command -v exa >/dev/null; then
+    LS_COMMAND="exa"
+    LS_PARMS="$LS_OPTIONS --icons --git --classify --group-directories-first --time-style=long-iso --group --color-scale --header"
+else
+    LS_COMMAND="ls"
+    LS_PARMS="$LS_OPTIONS"
+fi
+
+# some more ls aliases 
+# Some people like these being different, I want them all the same.
+alias ls="$LS_COMMAND $LS_PARMS -la"
+alias ll="$LS_COMMAND $LS_PARMS -la"
+alias la="$LS_COMMAND $LS_PARMS -la"
+alias l="$LS_COMMAND $LS_PARMS -la"
 
 # make nvim default for vim
 alias vim="nvim"
