@@ -21,9 +21,12 @@ Plug 'ervandew/supertab'                                    " Tab in insert for 
 Plug 'kien/ctrlp.vim'                                       " Open files easier with Ctrl+p
 Plug 'rstacruz/sparkup'                                     " Expand short hand for html (eg. div>ul>li*5)
 Plug 'tpope/vim-surround'                                   " Add the verb s for surround (ds' = delete surrounding ')
-Plug 'mhinz/vim-signify'                                    " Add gutter for git differences.
-Plug 'jiangmiao/auto-pairs'                                 " Make pairs of quotes / brackets easier.
+Plug 'mhinz/vim-signify'                                    " Add gutter for git differences
+Plug 'jiangmiao/auto-pairs'                                 " Make pairs of quotes / brackets easier
 Plug 'godlygeek/tabular'                                    " Space align text using :Tab
+Plug 'jceb/vim-orgmode'                                     " note taking and organization file type
+Plug 'dhruvasagar/vim-table-mode'                           " orgmode style tables
+Plug 'tpope/vim-speeddating'                                " fast dates
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
@@ -142,6 +145,16 @@ set viewoptions=cursor,folds,slash,unix
 let g:signify_vcs_list=['git']
 let g:signify_realtime=1
 
+"" vim-orgmode
+let g:org_indent = 1
+let g:org_todo_keywords = ['TODO', '|', 'LATE', 'ONTIME', 'FAIL']
+let g:org_todo_keyword_faces = [
+        \ ['TODO', [':foreground blue', ':background none']],
+        \ ['LATE', [':foreground yellow', ':background none']],
+        \ ['ONTIME', [':foreground green', ':background none']],
+        \ ['FAIL', [':foreground red', ':background none']],
+    \ ]
+
 
 
 """" Key bindings
@@ -173,6 +186,9 @@ noremap <Leader>t :NERDTreeToggle<CR>
 noremap <Leader>n :bnext<CR>
 noremap <Leader>p :bprevious<CR>
 noremap <Leader>l :blast<CR>
+
+" Easy exit for Terminal mode
+tnoremap <Esc> <C-\><C-n>
 
 
 

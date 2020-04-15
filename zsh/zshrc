@@ -32,6 +32,8 @@ setopt share_history
 # Use vim keybindings
 bindkey -v
 
+bindkey -v '^?' backward-delete-char # Allow for backspacing past insert start point.
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=$HISTSIZE
@@ -60,9 +62,17 @@ zplug "hlissner/zsh-autopair", defer:2          # smart pairing for quotes and b
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 
+zplug "zsh-users/zsh-history-substring-search"  # search for similar commands with up/down
+
 zplug "vifon/deer", use:deer
 zle -N deer
 bindkey '\ek' deer
+
+# Keybinds for zsh-history-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 
 
