@@ -27,6 +27,7 @@ Plug 'godlygeek/tabular'                                    " Space align text u
 Plug 'jceb/vim-orgmode'                                     " note taking and organization file type
 Plug 'dhruvasagar/vim-table-mode'                           " orgmode style tables
 Plug 'tpope/vim-speeddating'                                " fast dates
+Plug 'gioele/vim-autoswap'                                  " automatically deal with swap files
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
@@ -71,7 +72,7 @@ set expandtab                       " convert tabs to spaces
 set shiftwidth=4                    " number of spaces to use for each step of (auto)indent
 set softtabstop=4                   " backspace after pressting tab will remove up to this many spaces
 
-set autoindent                      " auto indent in blocks of text
+set smartindent                     " auto indent in blocks of text
 
 set incsearch                       " search as characters are entered
 set hlsearch                        " highlights matches
@@ -154,6 +155,9 @@ let g:org_todo_keyword_faces = [
         \ ['ONTIME', [':foreground green', ':background none']],
         \ ['FAIL', [':foreground red', ':background none']],
     \ ]
+
+"" vim-auto-pairs
+let g:AutoPairsMapSpace = 0
 
 
 
