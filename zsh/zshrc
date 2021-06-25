@@ -114,6 +114,9 @@ zplug load
 
 source ~/.config/zsh/clean-custom.zsh-theme
 
+# Remove autopair spaces
+unset 'AUTOPAIR_PAIRS[ ]'
+
 # Load aliases
 source "$HOME/.config/aliases/general"
 
