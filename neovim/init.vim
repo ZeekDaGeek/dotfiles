@@ -28,6 +28,7 @@ Plug 'jceb/vim-orgmode'                                     " note taking and or
 Plug 'dhruvasagar/vim-table-mode'                           " orgmode style tables
 Plug 'tpope/vim-speeddating'                                " fast dates
 Plug 'gioele/vim-autoswap'                                  " automatically deal with swap files
+Plug 'dhruvasagar/vim-zoom'                                 " toggle making a pane fullscreen
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
@@ -72,10 +73,12 @@ set expandtab                       " convert tabs to spaces
 set shiftwidth=4                    " number of spaces to use for each step of (auto)indent
 set softtabstop=4                   " backspace after pressting tab will remove up to this many spaces
 
+set autoindent
 set smartindent                     " auto indent in blocks of text
 
 set incsearch                       " search as characters are entered
 set hlsearch                        " highlights matches
+set ignorecase                      " ignore case must be on for smartcase
 set smartcase                       " case insensitive search unless the search string has capitals
 
 set hidden                          " hide buffers when switching, allowing unsaved edits to a buffer (unsure if keeping)
@@ -159,6 +162,15 @@ let g:org_todo_keyword_faces = [
 "" vim-auto-pairs
 let g:AutoPairsMapSpace = 0
 
+"" vim-zoom
+nmap <leader>z <C-W>m
+
+"" ctrlp
+" Use CtrlPMixed by default when using Ctrl+P (Disabled for easier newfiles?)
+let g:ctrlp_cmd = "CtrlPMixed"
+" When creating a new file open it in the current window
+let g:ctrlp_open_new_file = "r"
+
 
 
 """" Key bindings
@@ -166,12 +178,19 @@ let g:AutoPairsMapSpace = 0
 " Leader key
 let mapleader = ","
 
+" reload vimrc
+nnoremap <leader>R :source $MYVIMRC<CR>
+
 " Word wrap is on, j and k should not skip past wrapped lines.
 nmap j gj
 nmap k gk
 
+" swap 0 and ^ for getting to the beginning of a line.
+nnoremap 0 ^
+nnoremap ^ 0
+
 " Clear search when pressing enter in normal mode.
-nnoremap <CR> :nohlsearch<CR><CR>
+nnoremap <expr> <CR> v:hlsearch==1 ? ':nohlsearch<CR>' : '<CR>'
 
 " Disable arrow keys
 noremap <left> <Nop>
