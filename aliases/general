@@ -26,6 +26,11 @@ alias l="$LS_COMMAND $LS_PARMS -la"
 # make nvim default for vim
 alias vim="nvim"
 
+# change shell title easy
+set_screen_title() {
+    echo -ne "\033]2;$@\a"
+}
 
+alias st="set_screen_title"
 
 # vi:syntax=sh
