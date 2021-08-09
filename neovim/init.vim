@@ -12,35 +12,39 @@ endif
 
 """" Load plugins
 call plug#begin("~/.local/share/nvim/plugged")
-Plug 'vim-airline/vim-airline'                              " Fancy top and bottom status lines
-Plug 'vim-airline/vim-airline-themes'                       " Themes support for Airline
-Plug 'patstockwell/vim-monokai-tasty'                       " A specific Monokai theme for Airline
-Plug 'scrooloose/nerdtree'                                  " Tree style file browser
-Plug 'gcmt/taboo.vim'                                       " Allow easy naming of tabs
-Plug 'moll/vim-bbye'                                        " Close buffers without closing the pane
-Plug 'tpope/vim-fugitive'                                   " Git tool for vim
-Plug 'mhinz/vim-startify'                                   " A start screen when opening vim (my form of project management)
-Plug 'christoomey/vim-tmux-navigator'                       " Ctrl+HJKL move between vim panes first then Tmux panes
-Plug 'tmux-plugins/vim-tmux-focus-events'                   " When focusing vim through tmux events are handled properly
-Plug 'sickill/vim-pasta'                                    " Handle whitespace better when pasting
-Plug 'vim-syntastic/syntastic'                              " Validating syntax and offering suggestions @TODO
-Plug 'ervandew/supertab'                                    " Tab in insert for autocompletion, context aware
-Plug 'kien/ctrlp.vim'                                       " Open files easier with Ctrl+p
-Plug 'rstacruz/sparkup'                                     " Expand short hand for html (eg. div>ul>li*5)
-Plug 'tpope/vim-surround'                                   " Add the verb s for surround (ds' = delete surrounding ')
-Plug 'mhinz/vim-signify'                                    " Add gutter for git differences
-Plug 'jiangmiao/auto-pairs'                                 " Make pairs of quotes / brackets easier
-Plug 'godlygeek/tabular'                                    " Space align text using :Tab
-Plug 'jceb/vim-orgmode'                                     " note taking and organization file type
-Plug 'dhruvasagar/vim-table-mode'                           " orgmode style tables
-Plug 'tpope/vim-speeddating'                                " fast dates
-Plug 'gioele/vim-autoswap'                                  " automatically deal with swap files
-Plug 'dhruvasagar/vim-zoom'                                 " toggle making a pane fullscreen
+Plug 'vim-airline/vim-airline'                                                  " Fancy top and bottom status lines
+Plug 'vim-airline/vim-airline-themes'                                           " Themes support for Airline
+Plug 'patstockwell/vim-monokai-tasty'                                           " A specific Monokai theme for Airline
+Plug 'scrooloose/nerdtree'                                                      " Tree style file browser
+Plug 'gcmt/taboo.vim'                                                           " Allow easy naming of tabs
+Plug 'moll/vim-bbye'                                                            " Close buffers without closing the pane
+Plug 'tpope/vim-fugitive'                                                       " Git tool for vim
+Plug 'mhinz/vim-startify'                                                       " A start screen when opening vim (my form of project management)
+Plug 'christoomey/vim-tmux-navigator'                                           " Ctrl+HJKL move between vim panes first then Tmux panes
+Plug 'tmux-plugins/vim-tmux-focus-events'                                       " When focusing vim through tmux events are handled properly
+Plug 'sickill/vim-pasta'                                                        " Handle whitespace better when pasting
+Plug 'vim-syntastic/syntastic'                                                  " Validating syntax and offering suggestions @TODO
+Plug 'ervandew/supertab'                                                        " Tab in insert for autocompletion, context aware
+Plug 'kien/ctrlp.vim'                                                           " Open files easier with Ctrl+p
+Plug 'rstacruz/sparkup'                                                         " Expand short hand for html (eg. div>ul>li*5)
+Plug 'tpope/vim-surround'                                                       " Add the verb s for surround (ds' = delete surrounding ')
+Plug 'mhinz/vim-signify'                                                        " Add gutter for git differences
+Plug 'jiangmiao/auto-pairs'                                                     " Make pairs of quotes / brackets easier
+Plug 'godlygeek/tabular'                                                        " Space align text using :Tab
+Plug 'jceb/vim-orgmode'                                                         " note taking and organization file type
+Plug 'dhruvasagar/vim-table-mode'                                               " orgmode style tables
+Plug 'tpope/vim-speeddating'                                                    " fast dates
+Plug 'gioele/vim-autoswap'                                                      " automatically deal with swap files
+Plug 'dhruvasagar/vim-zoom'                                                     " toggle making a pane fullscreen
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
-Plug 'vim-scripts/L9'                                       " Library for FuzzyFinder
-Plug 'vim-scripts/FuzzyFinder'                              " ??? Didn't do what I wanted.
-Plug 'vim-scripts/restore_view.vim'                         " Save folds and cursor position on save
+Plug 'vim-scripts/L9'                                                           " Library for FuzzyFinder
+Plug 'vim-scripts/FuzzyFinder'                                                  " ??? Didn't do what I wanted.
+Plug 'vim-scripts/restore_view.vim'                                             " Save folds and cursor position on save
+
+" Syntax plugins
+Plug 'cespare/vim-toml'
+
 call plug#end()
 
 
