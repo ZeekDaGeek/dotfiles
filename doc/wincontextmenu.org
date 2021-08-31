@@ -1,0 +1,30 @@
+* Description
+  If you want to have context menus in Windows 10 to allow you to open up
+  files with WSL Neovim this doc will give some information and references on
+  how I managed to do it.
+* How to
+** Easy Context Menu
+*** Program:
+    %USERPROFILE%\AppData\Local\wsltty\bin\mintty.exe
+*** Parameters:
+    --WSL="Debian" --configdir="%APPDATA%\wsltty" -e zsh --login -c "nvim $(wslpath '%1')"
+** RegEdit
+*** Notes
+    - The order of the menu can be changed by adding a `String` named
+      `Position` with a value of `Top`, `Middle` or `Bottom`.
+    - The name of the Key is more of an identifier than the a label, add a
+      bunch of AAAs to the front to push it up the list and effect the order.
+*** Structure
+**** Icon
+**** MUIVerb
+     String that shows up in context menu
+**** Position
+**** command
+     ex: "%USERPROFILE%\AppData\Local\wsltty\bin\mintty.exe" --Title "Neovim - %1" --WSL="Debian" --configdir="%APPDATA%\wsltty" -e zsh --login -c "nvim $(wslpath '%1')"
+*** Icon
+    Small note about finding the icon for Neovim which may help in other
+    github repos. Found at: 'neovim\runtime\nvim.png'
+* References
+  1. [[https://stackoverflow.com/questions/51367359/how-to-add-open-in-vim-context-menu-entry-to-edit-text-files-in-windows-from-w][stackoverflow - How to add Open in Vim]]
+  2. [[https://nickjanetakis.com/blog/launching-wsl-programs-from-a-right-click-windows-menu][Launch WSL Programs from RClick]]
+  3. [[https://community.chocolatey.org/packages/ecm][Easy Context Menu]]

@@ -26,6 +26,9 @@ alias l="$LS_COMMAND $LS_PARMS -la"
 # make nvim default for vim
 alias vim="nvim"
 
+# follow ranger by default so you end up in the same dir on quit
+alias ranger="source ranger"
+
 # change shell title easy
 set_screen_title() {
     echo -ne "\033]2;$@\a"

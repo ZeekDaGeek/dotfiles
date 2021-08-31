@@ -36,6 +36,7 @@ Plug 'dhruvasagar/vim-table-mode'                                               
 Plug 'tpope/vim-speeddating'                                                    " fast dates
 Plug 'gioele/vim-autoswap'                                                      " automatically deal with swap files
 Plug 'dhruvasagar/vim-zoom'                                                     " toggle making a pane fullscreen
+Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                                           " Library for FuzzyFinder
