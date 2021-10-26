@@ -37,6 +37,10 @@ Plug 'tpope/vim-speeddating'                                                    
 Plug 'gioele/vim-autoswap'                                                      " automatically deal with swap files
 Plug 'dhruvasagar/vim-zoom'                                                     " toggle making a pane fullscreen
 Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
+Plug 'maksimr/vim-jsbeautify'                                                   " easy beautification of javascript
+Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
+" neoclide/coc.nvim - VSCode style autocomplete? Look into it.
+" vimlib/split-term - :term opens in the current, maybe this would fix it.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                                           " Library for FuzzyFinder
@@ -97,6 +101,8 @@ set hidden                          " hide buffers when switching, allowing unsa
 
 set splitbelow                      " open horizontal splits below by default
 set splitright                      " open veritical splits to the right by default
+
+set autoread                        " automatically reloads files changed externally
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -182,6 +188,13 @@ nmap <leader>z <C-W>m
 let g:ctrlp_cmd = "CtrlPMixed"
 " When creating a new file open it in the current window
 let g:ctrlp_open_new_file = "r"
+
+"" vim-jsbeautify
+command JSBeautify :call JsBeautify()
+command JSONBeautify :call JsonBeautify()
+command JSXBeautify :call JsxBeautify()
+command HTMLBeautify :call HtmlBeautify()
+command CSSBeautify :call CssBeautify()
 
 
 

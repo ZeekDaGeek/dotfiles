@@ -1,7 +1,7 @@
 # Runs when starting zsh, mainly used for environmental variables.
 # For main configuration probably use .zshrc
 
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 # Change zsh configuration directory
 export ZDOTDIR="$HOME/.config/zsh"
