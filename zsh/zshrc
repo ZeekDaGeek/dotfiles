@@ -143,8 +143,9 @@ zplug load
 
 source ~/.config/zsh/clean-custom.zsh-theme
 
-# fzf keybindings
+# fzf default autocomplete and key-bindings
 source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 
 # Remove autopair spaces
 unset 'AUTOPAIR_PAIRS[ ]'
