@@ -39,6 +39,7 @@ Plug 'dhruvasagar/vim-zoom'                                                     
 Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
 Plug 'maksimr/vim-jsbeautify'                                                   " easy beautification of javascript
 Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
 " neoclide/coc.nvim - VSCode style autocomplete? Look into it.
 " vimlib/split-term - :term opens in the current, maybe this would fix it.
 
@@ -190,11 +191,11 @@ let g:ctrlp_cmd = "CtrlPMixed"
 let g:ctrlp_open_new_file = "r"
 
 "" vim-jsbeautify
-command JSBeautify :call JsBeautify()
-command JSONBeautify :call JsonBeautify()
-command JSXBeautify :call JsxBeautify()
-command HTMLBeautify :call HtmlBeautify()
-command CSSBeautify :call CssBeautify()
+command! JSBeautify :call JsBeautify()
+command! JSONBeautify :call JsonBeautify()
+command! JSXBeautify :call JsxBeautify()
+command! HTMLBeautify :call HtmlBeautify()
+command! CSSBeautify :call CssBeautify()
 
 
 
