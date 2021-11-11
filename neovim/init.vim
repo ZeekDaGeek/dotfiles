@@ -40,8 +40,8 @@ Plug 'ryanoasis/vim-devicons'                                                   
 Plug 'maksimr/vim-jsbeautify'                                                   " easy beautification of javascript
 Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
-" neoclide/coc.nvim - VSCode style autocomplete? Look into it.
-" vimlib/split-term - :term opens in the current, maybe this would fix it.
+Plug 'vimlab/split-term.vim'                                                    " by default :term opens in the current, this fixes it.
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/L9'                                                           " Library for FuzzyFinder
