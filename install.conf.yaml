@@ -46,12 +46,16 @@
 ## File managers
 - link:
     ~/.config/ranger/rc.conf: ranger/rc.conf
-#- shell:
-#- git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-#- ["git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons", "Installing Ranger plugin: devicons"]
+
+## Git installs and updates
+- shell:
+    -
+        command: '[ -d ~/.config/ranger/plugins/ranger_devicons ] && git -C ~/.config/ranger/plugins/ranger_devicons pull --rebase || git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons'
+        description: 'Installing/Updating Ranger plugin: devicons'
+        quiet: true
 
 ## devicons
-- git:
-    '~/.config/ranger/plugins/ranger_devicons':
-        url: 'https://github.com/alexanderjeurissen/ranger_devicons'
-        #description: 'ranger - devicons'
+#- git:
+#    '~/.config/ranger/plugins/ranger_devicons':
+#        url: 'https://github.com/alexanderjeurissen/ranger_devicons'
+#        #description: 'ranger - devicons'
