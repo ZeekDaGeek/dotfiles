@@ -44,8 +44,6 @@ Plug 'vimlab/split-term.vim'                                                    
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
-Plug 'vim-scripts/L9'                                                           " Library for FuzzyFinder
-Plug 'vim-scripts/FuzzyFinder'                                                  " ??? Didn't do what I wanted.
 Plug 'vim-scripts/restore_view.vim'                                             " Save folds and cursor position on save
 
 " Syntax plugins
