@@ -236,7 +236,7 @@ noremap <Leader>t :NERDTreeToggle<CR>
 
 " Switch buffers
 noremap <Leader>n :bnext<CR>
-noremap <Leader>p :bprevious<CR>
+noremap <Leader>N :bprevious<CR>
 noremap <Leader>l :blast<CR>
 
 " Easy exit for Terminal mode
