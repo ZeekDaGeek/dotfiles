@@ -16,6 +16,12 @@ else
     LS_PARMS="$LS_OPTIONS"
 fi
 
+# Check if batcat should be aliased.
+# Maybe better to symlink?
+#if command -v batcat >/dev/null; then
+#    alias bat="batcat"
+#fi
+
 # some more ls aliases 
 # Some people like these being different.
 alias ls="$LS_COMMAND $LS_PARMS -la"

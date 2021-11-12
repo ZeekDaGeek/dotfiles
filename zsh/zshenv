@@ -13,5 +13,9 @@ export EDITOR="nvim"
 # WeeChat
 export WEECHAT_HOME="$HOME/.config/weechat"
 
+# fzf
+export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --wrap never --color=always --line-range=:500 {} || cat {} || tree -C {}'
+export FZF_CTRL_T_OPTS="--preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
+
 
 # vi:syntax=config 
