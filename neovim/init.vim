@@ -24,9 +24,9 @@ Plug 'christoomey/vim-tmux-navigator'                                           
 Plug 'tmux-plugins/vim-tmux-focus-events'                                       " When focusing vim through tmux events are handled properly
 Plug 'sickill/vim-pasta'                                                        " Handle whitespace better when pasting
 Plug 'vim-syntastic/syntastic'                                                  " Validating syntax and offering suggestions @TODO
-Plug 'ervandew/supertab'                                                        " Tab in insert for autocompletion, context aware
-Plug 'kien/ctrlp.vim'                                                           " Open files easier with Ctrl+p
-Plug 'rstacruz/sparkup'                                                         " Expand short hand for html (eg. div>ul>li*5)
+"Plug 'ervandew/supertab'                                                        " Tab in insert for autocompletion, context aware - Replaced with coc.vim
+"Plug 'kien/ctrlp.vim'                                                           " Open files easier with Ctrl+p
+"Plug 'rstacruz/sparkup'                                                         " Expand short hand for html (eg. div>ul>li*5)
 Plug 'tpope/vim-surround'                                                       " Add the verb s for surround (ds' = delete surrounding ')
 Plug 'mhinz/vim-signify'                                                        " Add gutter for git differences
 Plug 'jiangmiao/auto-pairs'                                                     " Make pairs of quotes / brackets easier
@@ -41,7 +41,6 @@ Plug 'maksimr/vim-jsbeautify'                                                   
 Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
 Plug 'vimlab/split-term.vim'                                                    " by default :term opens in the current, this fixes it.
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it.
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/restore_view.vim'                                             " Save folds and cursor position on save
@@ -49,8 +48,14 @@ Plug 'vim-scripts/restore_view.vim'                                             
 " Syntax plugins
 Plug 'cespare/vim-toml'
 
-call plug#end()
+" coc plugins
+" Enable coc with ~/.config/nvim/coc.vim
+if filereadable(expand("~/.config/nvim/coc.vim"))
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it. @TODO
+    source ~/.config/nvim/coc.vim
+endif
 
+call plug#end()
 
 
 """" Appearance
@@ -256,6 +261,4 @@ set list
 "" In order borrowed from
 " https://chrisyeh96.github.io/2017/12/18/vimrc.html
 " Damian Conway - More Instantly Better Vim
-
-
 
