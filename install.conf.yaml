@@ -42,6 +42,10 @@
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
     #~/.config/sessions: neovim/sessions_wsl
+    # touch config/install.coc to enable coc install.
+    ~/.config/nvim/coc.vim: 
+        if: '[[ -f config/install.coc ]]'
+        path: neovim/coc.vim
 
 ## File managers
 - link:
