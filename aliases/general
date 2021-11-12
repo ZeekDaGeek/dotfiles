@@ -17,11 +17,11 @@ else
 fi
 
 # some more ls aliases 
-# Some people like these being different, I want them all the same.
+# Some people like these being different.
 alias ls="$LS_COMMAND $LS_PARMS -la"
 alias ll="$LS_COMMAND $LS_PARMS -la"
 alias la="$LS_COMMAND $LS_PARMS -la"
-alias l="$LS_COMMAND $LS_PARMS -la"
+alias l="$LS_COMMAND $LS_PARMS -l"
 
 # make nvim default for vim
 alias vim="nvim"
