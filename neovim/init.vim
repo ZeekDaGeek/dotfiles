@@ -39,8 +39,10 @@ Plug 'dhruvasagar/vim-zoom'                                                     
 Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
 Plug 'maksimr/vim-jsbeautify'                                                   " easy beautification of javascript
 Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
 Plug 'vimlab/split-term.vim'                                                    " by default :term opens in the current, this fixes it.
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
+Plug 'junegunn/fzf.vim'                                                         " default fzf commands
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/restore_view.vim'                                             " Save folds and cursor position on save
@@ -187,7 +189,7 @@ let g:AutoPairsMapSpace = 0
 "" vim-zoom
 nmap <leader>z <C-W>m
 
-"" ctrlp
+"" ctrlp (disabled)
 " Use CtrlPMixed by default when using Ctrl+P (Disabled for easier newfiles?)
 let g:ctrlp_cmd = "CtrlPMixed"
 " When creating a new file open it in the current window
@@ -199,6 +201,10 @@ command! JSONBeautify :call JsonBeautify()
 command! JSXBeautify :call JsxBeautify()
 command! HTMLBeautify :call HtmlBeautify()
 command! CSSBeautify :call CssBeautify()
+
+"" fzf.vim
+" add Fzf to the start of all fzf.vim commands for less confusion
+let g:fzf_command_prefix = "Fzf"
 
 
 
@@ -238,6 +244,7 @@ noremap <Leader>t :NERDTreeToggle<CR>
 noremap <Leader>n :bnext<CR>
 noremap <Leader>N :bprevious<CR>
 noremap <Leader>l :blast<CR>
+noremap <Leader>b :FzfBuffers<CR>
 
 " Easy exit for Terminal mode
 tnoremap <Esc> <C-\><C-n>
