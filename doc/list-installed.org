@@ -1,2 +1,7 @@
 * Installed Programs:
+  A list of programs that are optionally installed for all of the dotfiles to
+  be effective.
+** apt-get programs
+    - fzf
     - bat
+    - ranger
