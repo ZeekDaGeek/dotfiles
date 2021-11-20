@@ -89,6 +89,7 @@ set showmatch                       " highlight matching backets
 set laststatus=2                    " always show bottom bar with file
 set ruler                           " display cursor position in bottom right
 set belloff=all                     " disable all dings on errors
+set scrolloff=8                     " scroll screen 8 lines earlier
 
 set tabstop=4                       " width of tabs
 set expandtab                       " convert tabs to spaces
@@ -109,6 +110,9 @@ set splitbelow                      " open horizontal splits below by default
 set splitright                      " open veritical splits to the right by default
 
 set autoread                        " automatically reloads files changed externally
+
+" autoread only triggers when certain events happen, like checktime
+autocmd FocusGained,BufEnter * :checktime
 
 scriptencoding utf-8
 set encoding=utf-8
