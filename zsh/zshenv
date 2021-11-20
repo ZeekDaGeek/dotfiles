@@ -17,5 +17,10 @@ export WEECHAT_HOME="$HOME/.config/weechat"
 export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --wrap never --color=always --line-range=:500 {} || cat {} || tree -C {}'
 export FZF_CTRL_T_OPTS="--preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
+# if ripgrep is install tried to filter out node_modules and .git
+if command -v rg > /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*}"'
+fi
+
 
 # vi:syntax=config 
