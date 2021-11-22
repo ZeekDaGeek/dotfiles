@@ -41,10 +41,20 @@ Plug 'mattn/emmet-vim'                                                          
 Plug 'vimlab/split-term.vim'                                                    " by default :term opens in the current, this fixes it.
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
-Plug 'junegunn/fzf.vim'                                                         " default fzf commands
+"Plug 'junegunn/fzf.vim'                                                         " default fzf commands
 
 " Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
 Plug 'vim-scripts/restore_view.vim'                                             " Save folds and cursor position on save
+
+" plugins only compatible with neovim 0.5.0+
+if has("nvim-0.5.0")
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+
+end
 
 " Syntax plugins
 Plug 'cespare/vim-toml'
