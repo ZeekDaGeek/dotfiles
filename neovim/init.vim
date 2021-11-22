@@ -68,6 +68,21 @@ endif
 
 call plug#end()
 
+lua << EOF
+require('telescope').setup {
+    extensions = {
+        fzf = {
+            fuzzy = false,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case"
+        }
+    }
+}
+
+require('telescope').load_extension('fzf')
+EOF
+
 
 """" Appearance
 
@@ -251,13 +266,21 @@ inoremap <up> <Nop>
 inoremap <right> <Nop>
 
 " NERDTree related
-noremap <Leader>t :NERDTreeToggle<CR>
+noremap <Leader>t <Cmd>NERDTreeToggle<CR>
 
 " Switch buffers
-noremap <Leader>n :bnext<CR>
-noremap <Leader>N :bprevious<CR>
-noremap <Leader>l :blast<CR>
-noremap <Leader>b :FzfBuffers<CR>
+noremap <Leader>n <Cmd>bnext<CR>
+noremap <Leader>N <Cmd>bprevious<CR>
+noremap <Leader>l <Cmd>blast<CR>
+noremap <Leader>b <Cmd>Telescope buffers<CR>
+
+" Telescope.vim
+noremap <Leader>ff <Cmd>Telescope find_files<CR>
+noremap <Leader>fe <Cmd>Telescope live_grep<CR>
+noremap <Leader>fb <Cmd>Telescope buffers<CR>
+noremap <Leader>fh <Cmd>Telescope help_tags<CR>
+noremap <Leader>fc <Cmd>Telescope command_history<CR>
+noremap <Leader>fs <Cmd>Telescope search_history<CR>
 
 " Easy exit for Terminal mode
 tnoremap <Esc> <C-\><C-n>
