@@ -136,7 +136,8 @@ set splitright                      " open veritical splits to the right by defa
 set autoread                        " automatically reloads files changed externally
 
 " autoread only triggers when certain events happen, like checktime
-autocmd FocusGained,BufEnter * :checktime
+" may be unneeded in 0.5?
+"autocmd FocusGained,BufEnter * :checktime
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -215,13 +216,7 @@ let g:org_todo_keyword_faces = [
 let g:AutoPairsMapSpace = 0
 
 "" vim-zoom
-nmap <leader>z <C-W>m
-
-"" ctrlp (disabled)
-" Use CtrlPMixed by default when using Ctrl+P (Disabled for easier newfiles?)
-let g:ctrlp_cmd = "CtrlPMixed"
-" When creating a new file open it in the current window
-let g:ctrlp_open_new_file = "r"
+nmap <Leader>z <C-W>m
 
 "" vim-jsbeautify
 command! JSBeautify :call JsBeautify()
@@ -236,13 +231,14 @@ let g:fzf_command_prefix = "Fzf"
 
 
 
-"""" Key bindings
+"""" keymaps
 
 " Leader key
-let mapleader = ","
+nnoremap <SPACE> <Nop>
+let mapleader = "\<SPACE>"
 
 " reload vimrc
-nnoremap <leader>R :source $MYVIMRC<CR>
+nnoremap <Leader>R :source $MYVIMRC<CR>
 
 " Word wrap is on, j and k should not skip past wrapped lines.
 nmap j gj
@@ -253,7 +249,7 @@ nnoremap 0 ^
 nnoremap ^ 0
 
 " Clear search when pressing enter in normal mode.
-nnoremap <expr> <CR> v:hlsearch==1 ? ':nohlsearch<CR>' : '<CR>'
+nnoremap <expr> <CR> v:hlsearch==1 ? '<Cmd>nohlsearch<CR>' : '<CR>'
 
 " Disable arrow keys
 noremap <left> <Nop>
