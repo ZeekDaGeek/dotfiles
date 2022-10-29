@@ -40,12 +40,24 @@
 
 # neovim configs
 - link:
-    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/nvim/after/plugin:
+      glob: true
+      path: neovim-lua/after/plugin/*
+    ~/.config/nvim/plugin: 
+      glob: true
+      path: neovim-lua/plugin/*
+    ~/.config/nvim/lua/zeekdageek: neovim-lua/lua/zeekdageek
+    ~/.config/nvim/init.default.lua: neovim-lua/init.lua
     #~/.config/sessions: neovim/sessions_wsl
     # touch config/install.coc to enable coc install.
-    ~/.config/nvim/coc.vim: 
-        if: '[[ -f config/install.coc ]]'
-        path: neovim/coc.vim
+    #~/.config/nvim/coc.vim: 
+    #    if: '[[ -f config/install.coc ]]'
+    #    path: neovim/coc.vim
+- shell:
+  -
+    command: '[ ! -f ~/.config/nvim/init.lua ] && cp neovim-lua/init.lua ~/.config/nvim/init.lua || echo "nvim/init.lua already exists, respecting the users changes."'
+    quiet: true
+
 
 ## File managers
 - link:

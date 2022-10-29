@@ -12,9 +12,13 @@ endif
 
 """" Load plugins
 call plug#begin("~/.local/share/nvim/plugged")
+
+" theme plugins
 Plug 'vim-airline/vim-airline'                                                  " Fancy top and bottom status lines
 Plug 'vim-airline/vim-airline-themes'                                           " Themes support for Airline
-Plug 'patstockwell/vim-monokai-tasty'                                           " A specific Monokai theme for Airline
+Plug 'arcticicestudio/nord-vim'                                                 " Nord theme that matches everything
+Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
+
 Plug 'scrooloose/nerdtree'                                                      " Tree style file browser
 Plug 'gcmt/taboo.vim'                                                           " Allow easy naming of tabs
 Plug 'moll/vim-bbye'                                                            " Close buffers without closing the pane
@@ -22,12 +26,8 @@ Plug 'tpope/vim-fugitive'                                                       
 Plug 'mhinz/vim-startify'                                                       " A start screen when opening vim (my form of project management)
 Plug 'christoomey/vim-tmux-navigator'                                           " Ctrl+HJKL move between vim panes first then Tmux panes
 Plug 'sickill/vim-pasta'                                                        " Handle whitespace better when pasting
-Plug 'vim-syntastic/syntastic'                                                  " Validating syntax and offering suggestions @TODO
-"Plug 'ervandew/supertab'                                                        " Tab in insert for autocompletion, context aware - Replaced with coc.vim
-"Plug 'kien/ctrlp.vim'                                                           " Open files easier with Ctrl+p
-"Plug 'rstacruz/sparkup'                                                         " Expand short hand for html (eg. div>ul>li*5)
 Plug 'tpope/vim-surround'                                                       " Add the verb s for surround (ds' = delete surrounding ')
-Plug 'mhinz/vim-signify'                                                        " Add gutter for git differences
+"Plug 'mhinz/vim-signify'                                                        " Add gutter for git differences
 Plug 'jiangmiao/auto-pairs'                                                     " Make pairs of quotes / brackets easier
 Plug 'godlygeek/tabular'                                                        " Space align text using :Tab
 Plug 'jceb/vim-orgmode'                                                         " note taking and organization file type
@@ -35,10 +35,10 @@ Plug 'dhruvasagar/vim-table-mode'                                               
 Plug 'tpope/vim-speeddating'                                                    " fast dates
 Plug 'gioele/vim-autoswap'                                                      " automatically deal with swap files
 Plug 'dhruvasagar/vim-zoom'                                                     " toggle making a pane fullscreen
-Plug 'ryanoasis/vim-devicons'                                                   " icons for nerdtree
 Plug 'maksimr/vim-jsbeautify'                                                   " easy beautification of javascript
 Plug 'mattn/emmet-vim'                                                          " emmet expansion (eg. ul>li*5)
 Plug 'vimlab/split-term.vim'                                                    " by default :term opens in the current, this fixes it.
+Plug 'will133/vim-dirdiff'                                                      " adds :DirDiff for comparing folders
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                             " fuzzy file finder, auto updating hook
 "Plug 'junegunn/fzf.vim'                                                         " default fzf commands
@@ -53,7 +53,7 @@ if has("nvim-0.5.0")
 
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 end
 
 " Syntax plugins
@@ -61,15 +61,22 @@ Plug 'cespare/vim-toml'
 
 " coc plugins
 " Enable coc with ~/.config/nvim/coc.vim
-if filereadable(expand("~/.config/nvim/coc.vim"))
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it. @TODO
-    source ~/.config/nvim/coc.vim
-endif
+"if filereadable(expand("~/.config/nvim/coc.vim"))
+"    Plug 'neoclide/coc.nvim', {'branch': 'release'}                                 " VSCode style autocomplete? Look into it.
+"    source ~/.config/nvim/coc.vim
+"endif
+"@TODO replace with neovim lsp
 
 call plug#end()
 
 lua << EOF
 require('telescope').setup {
+    defaults = {
+        file_ignore_patterns = {
+            "node_modules",
+            ".git"
+        }
+    },
     extensions = {
         fzf = {
             fuzzy = false,
@@ -81,15 +88,30 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+
+require('nvim-treesitter.configs').setup {
+    ensure_installed = { "vim", "lua" },
+    -- highlight = { enable = true },
+    }
+-- fix for folds
+--[[
+vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+  callback = function()
+    vim.opt.foldmethod     = 'expr'
+    vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+  end
+})
+--]]
 EOF
 
 
 """" Appearance
 
-syntax enable
+"syntax enable
 
 " colorscheme monokai_nobg
-colorscheme vim-monokai-tasty
+colorscheme nord
 
 " theme customization (needed colors borrowed from monokai-tasty)
 "let s:charcoal = { "cterm": 235, "gui": "#262626" }
@@ -137,7 +159,10 @@ set autoread                        " automatically reloads files changed extern
 
 " autoread only triggers when certain events happen, like checktime
 " may be unneeded in 0.5?
-"autocmd FocusGained,BufEnter * :checktime
+augroup autoreadFix
+    autocmd!
+    autocmd FocusGained,BufEnter * :checktime
+augroup END
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -154,7 +179,7 @@ set diffopt+=indent-heuristic
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "monokai_tasty"
+let g:airline_theme = "nord"
 "let g:airline_theme = "dark"
 
 let g:airline_mode_map = {
@@ -215,8 +240,6 @@ let g:org_todo_keyword_faces = [
 "" vim-auto-pairs
 let g:AutoPairsMapSpace = 0
 
-"" vim-zoom
-nmap <Leader>z <C-W>m
 
 "" vim-jsbeautify
 command! JSBeautify :call JsBeautify()
@@ -260,6 +283,9 @@ inoremap <left> <Nop>
 inoremap <down> <Nop>
 inoremap <up> <Nop>
 inoremap <right> <Nop>
+
+" vim-zoom
+nmap <Leader>z <C-W>m
 
 " NERDTree related
 noremap <Leader>t <Cmd>NERDTreeToggle<CR>
