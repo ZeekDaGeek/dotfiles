@@ -50,18 +50,6 @@ opt.autoread = true -- automatically reloads files changed externally
 
 opt.clipboard:prepend { 'unnamed', 'unnamedplus' } -- OS clipboards
 
--- autoread only triggers when certain events happen, like checktime
--- may be unneeded in 0.5?
-cmd [[
-    augroup autoreadFix
-	autocmd!
-	autocmd FocusGained,BufEnter * :checktime
-    augroup END
-]]
-
---scriptencoding utf-8
---set encoding=utf-8
-
 -- Better git diff algorithm (usually)
 opt.diffopt:append('algorithm:patience')
 opt.diffopt:append('indent-heuristic')
