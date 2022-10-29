@@ -42,4 +42,12 @@ set_screen_title() {
 
 alias st="set_screen_title"
 
+if command -v advcp >/dev/null; then
+    alias cp="advcp -g"
+fi
+
+if command -v advmv >/dev/null; then
+    alias mv="advmv -g"
+fi
+
 # vi:syntax=sh
