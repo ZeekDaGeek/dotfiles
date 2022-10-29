@@ -8,7 +8,7 @@ nvimtree.setup {
     reload_on_bufenter = true,
     renderer = {
         group_empty = true,
-        highlight_opened_files = 'all',
+        --highlight_opened_files = 'all', -- too inconsistant
     },
     actions = {
         change_dir = {
