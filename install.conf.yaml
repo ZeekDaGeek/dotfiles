@@ -19,6 +19,7 @@
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/clean-custom.zsh-theme: zsh/clean-custom.zsh-theme
+    ~/.config/zsh/fzf: zsh/fzf
 
 # aliases
 - link:
