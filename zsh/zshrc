@@ -106,7 +106,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # =============================================================================
 # Use modern completion system
 #autoload -Uz compinit && compinit
-
+#
 #zstyle ':completion:*' auto-description 'specify: %d'
 #zstyle ':completion:*' completer _expand _complete _correct _approximate
 #zstyle ':completion:*' format 'Completing %d'
@@ -139,9 +139,6 @@ zplug load
 
 source ~/.config/zsh/clean-custom.zsh-theme
 
-# fzf default autocomplete and key-bindings
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
 
 # Remove autopair spaces
 unset 'AUTOPAIR_PAIRS[ ]'
@@ -153,4 +150,17 @@ source "$HOME/.config/aliases/general"
 source "$HOME/.config/abbr/general.zsh"
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == *~/.fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}~/.fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "~/.fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source ~/.fzf/shell/key-bindings.zsh
