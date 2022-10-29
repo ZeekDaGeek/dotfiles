@@ -1,0 +1,11 @@
+* Description
+  You can hijack `notepad.exe` and make it launch a WSL version of Neovim.
+* How to
+** RegEdit
+   HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe
+   Debugger (String Value):
+       c:\Windows\system32\wscript.exe "H:\nvim.vbs"
+** Notes
+   See wincontextmenu.org for the full command to put into nvim.vbs
+* References
+  1. [[https://www.winhelponline.com/blog/replace-notepad-text-editor-notepad-plus-association/][How to Replace Notepad with Notepad++ or Other Editor]]
