@@ -18,7 +18,10 @@ telescope.setup {
     }
 }
 
-telescope.load_extension('fzf')
+local fzf_status = pcall(require, 'fzf_lib')
+if (not fzf_status) then
+    telescope.load_extension('fzf')
+end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
