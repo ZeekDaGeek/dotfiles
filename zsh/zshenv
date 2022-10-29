@@ -24,3 +24,4 @@ fi
 
 
 # vi:syntax=config 
+. "$HOME/.cargo/env"

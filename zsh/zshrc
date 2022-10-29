@@ -93,10 +93,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "zsh-users/zsh-history-substring-search"  # search for similar commands with up/down
 
-zplug "vifon/deer", use:deer
-zle -N deer
-bindkey '\ek' deer
-
 # Keybinds for zsh-history-substring-search
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -156,3 +152,5 @@ source "$HOME/.config/aliases/general"
 # Load abbreviations
 source "$HOME/.config/abbr/general.zsh"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
