@@ -35,6 +35,7 @@ return require('packer').startup({ function(use)
 
     -- Nord theme that matches everything
     use 'arcticicestudio/nord-vim'
+    --use 'shaunsingh/nord.nvim'
 
     --  Tree style file browser
     use {

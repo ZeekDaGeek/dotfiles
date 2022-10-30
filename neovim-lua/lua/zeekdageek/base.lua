@@ -11,7 +11,13 @@ vim.g.loaded_netrwPlugin = 1
 
 cmd [[silent! colorscheme nord]]
 
-vim.g.nord_uniform_diff_background = 1
+
+vim.g.nord_contrast = false
+vim.g.nord_borders = false
+vim.g.nord_disable_background = false
+vim.g.nord_italic = false
+vim.g.nord_uniform_diff_background = true
+
 
 opt.mouse = '' -- disable mouse
 

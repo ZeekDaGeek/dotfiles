@@ -11,9 +11,11 @@ local opt = vim.opt
 
 
 -- makes colors clearer
+--[[
 if (fn.has('termguicolors')) then
     opt.termguicolors = true
 end
+--]]
 
 -- restore_view.vim
 opt.viewoptions = "cursor,folds,slash,unix"
