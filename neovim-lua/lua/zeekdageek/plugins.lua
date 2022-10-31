@@ -12,7 +12,15 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup({ function(use)
+local packer = require('packer')
+
+packer.reset()
+packer.init {
+    auto_clean = false
+}
+
+
+return packer.startup({ function(use)
     use 'wbthomason/packer.nvim'
 
     -- Sorry for the excess comments, it helps me keep track of plugins that
@@ -34,8 +42,23 @@ return require('packer').startup({ function(use)
     use 'nvim-lualine/lualine.nvim'
 
     -- Nord theme that matches everything
-    use 'arcticicestudio/nord-vim'
-    --use 'shaunsingh/nord.nvim'
+    vim.cmd [[
+        if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\([-\.].*\)\?$'
+            set notermguicolors
+        elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\([-\.].*\)\?$'
+            set termguicolors
+        elseif $TERM =~ '^\(xterm\)\([-\.].*\)\?$'
+            set termguicolors
+        end
+    ]]
+
+    if (vim.opt.termguicolors:get()) then
+        use { 'arcticicestudio/nord-vim', disable = false }
+        use { 'shaunsingh/nord.nvim', disable = true }
+    else
+        use { 'arcticicestudio/nord-vim', disable = true }
+        use { 'shaunsingh/nord.nvim', disable = false }
+    end
 
     --  Tree style file browser
     use {
@@ -151,9 +174,7 @@ return require('packer').startup({ function(use)
     use 'vim-scripts/restore_view.vim'
 
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+    require('packer.async').sync()
 
 end,
 })

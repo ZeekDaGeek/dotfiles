@@ -157,3 +157,5 @@ source "$HOME/.config/abbr/general.zsh"
 # Key bindings
 # ------------
 source "$HOME/.config/zsh/fzf/key-bindings.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

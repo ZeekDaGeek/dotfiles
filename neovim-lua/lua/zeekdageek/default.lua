@@ -9,6 +9,11 @@ local fn = vim.fn
 local opt = vim.opt
 --local cmd = vim.cmd
 
+--[[
+if (fn.has('termguicolors')) then
+    opt.termguicolors = true
+end
+--]]
 
 -- makes colors clearer
 --[[
