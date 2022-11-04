@@ -17,21 +17,12 @@ export SHELL="/bin/zsh"
 # Enable colors:
 autoload -U colors && colors
 
-# Prompt defined further down now.
-#autoload -Uz promptinit
-#promptinit
-#prompt adam1
-
-# Bash Prompt: PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#PS1="%B[%{$fg[green]%}%n@%M%{$fg[white]%}:%{$fg[blue]%}%~%{$reset_color%}]$%b "
-
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt share_history
 
 # Use vim keybindings
 bindkey -v
-
 bindkey -v '^?' backward-delete-char # Allow for backspacing past insert start point.
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
@@ -56,16 +47,6 @@ if [[ "$TERM" != emacs ]]; then
 [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
 [[ -z "$terminfo[kcuf1]" ]] || bindkey -M viins "$terminfo[kcuf1]" vi-forward-char
 [[ -z "$terminfo[kcub1]" ]] || bindkey -M viins "$terminfo[kcub1]" vi-backward-char
-
-# ncurses fogyatekos
-#[[ "$terminfo[kcuu1]" == "^[O"* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" vi-up-line-or-history
-#[[ "$terminfo[kcud1]" == "^[O"* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" vi-down-line-or-history
-#[[ "$terminfo[kcuf1]" == "^[O"* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
-#[[ "$terminfo[kcub1]" == "^[O"* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
-#[[ "$terminfo[khome]" == "^[O"* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
-#[[ "$terminfo[kend]" == "^[O"* ]] && bindkey -M viins "${terminfo[kend]/O/[}" end-of-line
-#[[ "$terminfo[khome]" == "^[O"* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
-#[[ "$terminfo[kend]" == "^[O"* ]] && bindkey -M emacs "${terminfo[kend]/O/[}" end-of-line
 fi
 
 
@@ -100,31 +81,6 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 
-
-# =============================================================================
-#                                 Completions
-# =============================================================================
-# Use modern completion system
-#autoload -Uz compinit && compinit
-#
-#zstyle ':completion:*' auto-description 'specify: %d'
-#zstyle ':completion:*' completer _expand _complete _correct _approximate
-#zstyle ':completion:*' format 'Completing %d'
-#zstyle ':completion:*' group-name ''
-#zstyle ':completion:*' menu select=2
-#eval "$(dircolors -b)"
-#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*' list-colors ''
-#zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-#zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-#zstyle ':completion:*' menu select=long
-#zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-#zstyle ':completion:*' use-compctl false
-#zstyle ':completion:*' verbose true
-#
-#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-#zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
 # =============================================================================
 #                                     Start
 # =============================================================================
@@ -150,6 +106,7 @@ source "$HOME/.config/aliases/general"
 source "$HOME/.config/abbr/general.zsh"
 
 
+## FZF
 # Auto-completion
 # ---------------
 [[ $- == *i* ]] && source "$HOME/.config/zsh/fzf/completion.zsh" 2> /dev/null
@@ -158,6 +115,8 @@ source "$HOME/.config/abbr/general.zsh"
 # ------------
 source "$HOME/.config/zsh/fzf/key-bindings.zsh"
 
+
+## Transparency
 # if we're using Windows Terminal tell other configs to make background
 # transparent
 if [[ $PWD = ~/.config/term/winterm ]] then
@@ -168,3 +127,7 @@ else
 fi
 # wsl can't --cd into different directories on start through Windows Terminal wtf?
 export TRANSPARENCY=true
+
+## Ranger
+# Ranger needs to be told to not overwrite configs?
+export RANGER_LOAD_DEFAULT_RC=false

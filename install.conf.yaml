@@ -71,7 +71,9 @@
 
 ## File managers
 - link:
-    ~/.config/ranger/rc.conf: ranger/rc.conf
+    ~/.config/ranger/:
+      glob: true
+      path: ranger/*
 
 ## Git installs and updates
 - shell:
