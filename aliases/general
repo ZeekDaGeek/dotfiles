@@ -33,7 +33,7 @@ alias l="$LS_COMMAND $LS_PARMS -l"
 alias vim="nvim"
 
 # follow ranger by default so you end up in the same dir on quit
-alias ranger="source ranger"
+alias ranger="source ranger ranger"
 
 # change shell title easy
 set_screen_title() {
