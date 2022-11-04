@@ -158,4 +158,13 @@ source "$HOME/.config/abbr/general.zsh"
 # ------------
 source "$HOME/.config/zsh/fzf/key-bindings.zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# if we're using Windows Terminal tell other configs to make background
+# transparent
+if [[ $PWD = ~/.config/term/winterm ]] then
+    export TRANSPARENCY=true
+    cd ~
+else
+    export TRANSPARENCY=false
+fi
+# wsl can't --cd into different directories on start through Windows Terminal wtf?
+export TRANSPARENCY=true
