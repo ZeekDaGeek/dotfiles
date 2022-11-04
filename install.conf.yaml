@@ -6,7 +6,9 @@
 - clean: ['~']
 
 - link:
-    ~/.dotfiles: ''
+    ~/.dotfiles:
+      if: '[[ ! -d ~/.dotfiles ]]'
+      path: ''
 
 ## Terminals
 
