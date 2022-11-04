@@ -9,19 +9,6 @@ local fn = vim.fn
 local opt = vim.opt
 --local cmd = vim.cmd
 
---[[
-if (fn.has('termguicolors')) then
-    opt.termguicolors = true
-end
---]]
-
--- makes colors clearer
---[[
-if (fn.has('termguicolors')) then
-    opt.termguicolors = true
-end
---]]
-
 -- restore_view.vim
 opt.viewoptions = "cursor,folds,slash,unix"
 
@@ -48,13 +35,16 @@ vim.g.fzf_command_prefix = "Fzf"
 
 
 
----- Other
 
 -- Highlight only when passing 80 characters
 vim.cmd [[
-    call matchadd('ColorColumn', '\%81v.', 100)
-    call matchadd('ColorColumn', '\%121v.', 100)
+    highlight TooFar ctermfg=14 guifg=#EBCB8B
+    highlight WayTooFar ctermfg=4 guifg=#BF616A
+
+    call matchadd('TooFar', '\%81v.', 100)
+    call matchadd('WayTooFar', '\%121v.', 100)
 ]]
+-- Example of a too long line affected from above. -----------------------------------------------------------------------
 
 -- Show tabs and trailing whitespace characters
 vim.cmd [[

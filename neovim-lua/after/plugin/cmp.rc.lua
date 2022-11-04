@@ -48,9 +48,10 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'path' },
         { name = 'luasnip' },
-    }, {
-        { name = 'buffer' },
+    }, { -- buffer suggestions in a different group
+        { name = 'buffer', keyword_length = 4 },
     }),
     formatting = {
         format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })

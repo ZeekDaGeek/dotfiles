@@ -37,5 +37,9 @@ map.set('', '<leader>z', '<C-W>m', remap)
 -- Easy exit for Terminal mode
 map.set('t', '<Esc>', '<C-\\><C-n>')
 
+-- Easy sourcing
+map.set('n', '<leader>R', '<Cmd>source $MYVIMRC<CR>')
+map.set('n', '<leader>S', '<Cmd>source %<CR>')
+
 
 

@@ -42,6 +42,7 @@ return packer.startup({ function(use)
     use 'nvim-lualine/lualine.nvim'
 
     -- Nord theme that matches everything
+    -- screen causes 256color issues, detect it
     vim.cmd [[
         if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\([-\.].*\)\?$'
             set notermguicolors
@@ -52,13 +53,10 @@ return packer.startup({ function(use)
         end
     ]]
 
-    if (vim.opt.termguicolors:get()) then
-        use { 'arcticicestudio/nord-vim', disable = false }
-        use { 'shaunsingh/nord.nvim', disable = true }
-    else
-        use { 'arcticicestudio/nord-vim', disable = true }
-        use { 'shaunsingh/nord.nvim', disable = false }
-    end
+    -- only when no gui colors
+    use { 'arcticicestudio/nord-vim', cond = function() return (not vim.opt.termguicolors:get()) end }
+    -- only with gui colors
+    use { 'shaunsingh/nord.nvim', cond = function() return (vim.opt.termguicolors:get()) end }
 
     --  Tree style file browser
     use {
@@ -142,27 +140,26 @@ return packer.startup({ function(use)
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
     }
 
-    -- fuzzy file finder, auto updating hook
-    use { 'junegunn/fzf', run = "./install --all" }
-
     -- a engine for syntax highlighing
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
     }
 
+    -- language server providers
     use 'onsails/lspkind-nvim' -- vscode-like pictograms
     use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
+    use 'hrsh7th/cmp-path' -- nvim-cmp source for file paths
     use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
     use 'hrsh7th/nvim-cmp' -- Completion
     use 'neovim/nvim-lspconfig' -- LSP
-    use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-    use 'williamboman/mason.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim' -- to inject LSP diagnostics, code actions, and more
+    use 'williamboman/mason.nvim' -- auto install + manage LSPs
     use 'williamboman/mason-lspconfig.nvim'
 
     use 'glepnir/lspsaga.nvim' -- LSP UIs
     use 'L3MON4D3/LuaSnip'
-    --use 'saadparwaiz1/cmp_luasnip'
+    use 'saadparwaiz1/cmp_luasnip'
 
     use({
         "iamcco/markdown-preview.nvim",
@@ -174,7 +171,9 @@ return packer.startup({ function(use)
     use 'vim-scripts/restore_view.vim'
 
 
-    require('packer.async').sync()
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 
 end,
 })
