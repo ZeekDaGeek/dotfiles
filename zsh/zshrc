@@ -165,7 +165,7 @@ if [ "$CURRENTBRANCH"=="master" ]; then
 
         read -rs -k 1 ans
 
-        if [[ $ANS =~ ^[Yy]$ ]] then
+        if [[ $ans =~ ^[Yy]$ ]] then
             echo -e "\n\nUpdating dotfiles...\n"
             git fetch
             git reset --hard HEAD
