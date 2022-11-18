@@ -141,13 +141,13 @@ export RANGER_LOAD_DEFAULT_RC=false
 # Check to make sure we are on the master branch
 if [[ ! -d ~/.dotfiles ]] then
     exit 1
-end
+fi
 
-cd ~/.dotfiles
+pushd -q ~/.dotfiles
 CURRENTBRANCH=$(git status|awk 'NR==1{print $3}');
 
 # only update if on master branch
-if [ "$CURRENTBRANCH" == "master" ]; then
+if [ "$CURRENTBRANCH"=="master" ]; then
     # Not on master - don't proceed
     # Check whether the current working branch is ahead, behind or diverged from remote master, and exit if we're not using the current remote master
     LOCAL=$(git rev-parse @)
@@ -156,6 +156,7 @@ if [ "$CURRENTBRANCH" == "master" ]; then
 
     if [ "$LOCAL"=="$REMOTE" ]; then
         # Up to date, do nothing.
+        popd -q
     elif [ "$LOCAL"=="$BASE" ]; then
         # Behind, ask to auto update.
         echo -e "There is an update available for your dotfiles;\n"
@@ -164,14 +165,19 @@ if [ "$CURRENTBRANCH" == "master" ]; then
             echo -e "\n\nUpdating dotfiles...\n"
             git pull --force
             sh ~/.dotfiles/install
+            popd -q
             exec zsh
         fi
     elif [ "$REMOTE"=="$BASE" ]; then
         #echo -e "Your working branch is ahead of the remote branch, you need to run:\ngit push origin master"
         #exit 1
+        popd -q
     else
         #echo "Your working branch has diverged from the remote master, cannot continue"
         #exit 1
+        popd -q
     fi
+else
+    popd -q
 fi
 
