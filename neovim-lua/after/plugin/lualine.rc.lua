@@ -11,6 +11,6 @@ lualine.setup {
         theme = 'auto',
         disabled_filetypes = ignored_filetypes,
         ignore_focus = ignored_filetypes,
-        globalstatus = true,
+        globalstatus = false,
     }
 }
