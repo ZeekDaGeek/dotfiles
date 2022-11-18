@@ -30,16 +30,22 @@ map.set('i', '<down>', '<Nop>')
 map.set('i', '<up>', '<Nop>')
 map.set('i', '<right>', '<Nop>')
 
--- vim-zoom @TODO: move
-map.set('', '<leader>z', '<C-W>m', remap)
-
-
 -- Easy exit for Terminal mode
 map.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- Easy sourcing
-map.set('n', '<leader>R', '<Cmd>source $MYVIMRC<CR>')
-map.set('n', '<leader>S', '<Cmd>source %<CR>')
+map.set('n', '<leader>R', function()
+    vim.cmd [[
+        source $MYVIMRC
+        echo "Reloaded .vimrc"
+    ]]
+end)
+map.set('n', '<leader>S', function()
+    vim.cmd [[
+        source %
+        echo "Sourced " . expand("%:p")
+    ]]
+end)
 
 
 
