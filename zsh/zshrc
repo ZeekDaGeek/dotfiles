@@ -154,21 +154,31 @@ if [ "$CURRENTBRANCH"=="master" ]; then
     REMOTE=$(git rev-parse @{u})
     BASE=$(git merge-base @ @{u})
 
-    if [ "$LOCAL"=="$REMOTE" ]; then
+    if [ $LOCAL = $REMOTE ]; then
         # Up to date, do nothing.
         popd -q
-    elif [ "$LOCAL"=="$BASE" ]; then
+    elif [ $LOCAL = $BASE ]; then
+
         # Behind, ask to auto update.
         echo -e "There is an update available for your dotfiles;\n"
-        read -p "Do you want to update? [y]es/[N]o" -n 1 -r
-        if [[ $REPLY =~ ^[Yy]$ ]] then
+        echo -e "Do you want to update? [y]es/[N]o"
+
+        read -rs -k 1 ans
+
+        if [[ $ANS =~ ^[Yy]$ ]] then
             echo -e "\n\nUpdating dotfiles...\n"
+            git fetch
+            git reset --hard HEAD
             git pull --force
             sh ~/.dotfiles/install
             popd -q
             exec zsh
+        else
+            popd -q
+            echo -e "\n\nSkipping update.\n"
         fi
-    elif [ "$REMOTE"=="$BASE" ]; then
+
+    elif [ $REMOTE = $BASE ]; then
         #echo -e "Your working branch is ahead of the remote branch, you need to run:\ngit push origin master"
         #exit 1
         popd -q
