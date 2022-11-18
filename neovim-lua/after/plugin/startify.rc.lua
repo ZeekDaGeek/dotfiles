@@ -7,8 +7,8 @@ let g:startify_lists = [
         \ { 'type': 'sessions',  'header': ['  Saved Sessions'] },
         \ { 'type': 'bookmarks', 'header': ['  Bookmarks']      },
         \ { 'type': 'commands',  'header': ['  Commands']       },
-        \ { 'type': 'files',     'header': ['  Recent Files']   },
     \ ]
+"        \ { 'type': 'files',     'header': ['  Recent Files']   },
 
 let g:startify_session_before_save = [
         \ 'silent! NvimTreeClose'
