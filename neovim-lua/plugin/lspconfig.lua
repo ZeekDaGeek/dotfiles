@@ -15,6 +15,10 @@ local enable_format_on_save = function(_, bufnr)
     })
 end
 
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>dl', '<Cmd>Telescope diagnostics<CR>', opts) -- pneumonic: dl = diagnostics list
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -25,13 +29,14 @@ local on_attach = function(client, bufnr)
     --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = { noremap = true, silent = true }
+    local bufopts = { noremap = true, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    --buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', bufopts)
+    --buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts) -- replaced by lspsaga
+    buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
+    --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts) -- replaced by lspsaga
+    buf_set_keymap('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
 end
 
 protocol.CompletionItemKind = {
