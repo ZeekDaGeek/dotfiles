@@ -8,12 +8,18 @@ nvimtree.setup {
     reload_on_bufenter = true,
     renderer = {
         group_empty = true,
-        --highlight_opened_files = 'all', -- too inconsistant
+        -- highlight_opened_files = 'all', -- too inconsistant
     },
     actions = {
         change_dir = {
             global = true,
         },
+    },
+    git = {
+        ignore = false,
+    },
+    update_focused_file = {
+        enable = true,
     },
 }
 
