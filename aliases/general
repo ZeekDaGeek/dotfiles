@@ -31,6 +31,7 @@ alias l="$LS_COMMAND $LS_PARMS -l"
 
 # make nvim default for vim
 alias vim="nvim"
+alias v="nvim"
 
 # follow ranger by default so you end up in the same dir on quit
 alias ranger="source ranger ranger"
