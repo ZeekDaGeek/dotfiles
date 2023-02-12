@@ -12,39 +12,44 @@ function GetHighlight(group)
 
     local hl = pcall(vim.cmd, 'silent hi ' .. group)
 
-    if not hl then
+    if hl then
+
+        vim.cmd.redir('=> g:_tmp_current_hl')
+        vim.cmd('silent highlight ' .. group)
+        vim.cmd.redir('END')
+
+
+        if (_DEBUG == true) then
+            print(group .. ' highlight result: ' .. vim.g._tmp_current_hl)
+        end
+
+        -- Check for link
+        local link = string.match(vim.g._tmp_current_hl, 'links to (%w+)')
+        if (not (link == nil)) then
+            return GetHighlight(link)
+        end
+
+        local args = {}
+
+        for k,v in string.gmatch(vim.g._tmp_current_hl, '(%w+)=([#]*%w+)') do
+            args[k] = v
+        end
+
+        if (_DEBUG == true) then
+            vim.pretty_print(args)
+        end
+
+        return args
+
+    else
+
         if (_DEBUG == true) then
             print('Cannot find a highlight group with the name: ' .. group)
         end
-        return false
+
+        return {}
+
     end
-
-    vim.cmd.redir('=> g:_tmp_current_hl')
-    vim.cmd('silent highlight ' .. group)
-    vim.cmd.redir('END')
-
-
-    if (_DEBUG == true) then
-        print(group .. ' highlight result: ' .. vim.g._tmp_current_hl)
-    end
-
-    -- Check for link
-    local link = string.match(vim.g._tmp_current_hl, 'links to (%w+)')
-    if (not (link == nil)) then
-        return GetHighlight(link)
-    end
-
-    local args = {}
-
-    for k,v in string.gmatch(vim.g._tmp_current_hl, '(%w+)=([#]*%w+)') do
-        args[k] = v
-    end
-
-    if (_DEBUG == true) then
-        vim.pretty_print(args)
-    end
-
-    return args
 
 end
 
@@ -147,6 +152,14 @@ if (nvimtree) then
 
     ChangeHighlight(
         'NvimTreeVertSplit',
+        {
+            guibg = '#3B4252',
+            ctermbg = '8',
+        }
+    )
+
+    ChangeHighlight(
+        'NvimTreeWinSeparator',
         {
             guibg = '#3B4252',
             ctermbg = '8',
