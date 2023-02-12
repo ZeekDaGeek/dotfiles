@@ -10,9 +10,19 @@ local _DEBUG = false
 
 function GetHighlight(group)
 
+    local hl = pcall(vim.cmd, 'silent hi ' .. group)
+
+    if not hl then
+        if (_DEBUG == true) then
+            print('Cannot find a highlight group with the name: ' .. group)
+        end
+        return false
+    end
+
     vim.cmd.redir('=> g:_tmp_current_hl')
     vim.cmd('silent highlight ' .. group)
     vim.cmd.redir('END')
+
 
     if (_DEBUG == true) then
         print(group .. ' highlight result: ' .. vim.g._tmp_current_hl)
