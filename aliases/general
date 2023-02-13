@@ -51,4 +51,6 @@ if command -v advmv >/dev/null; then
     alias mv="advmv -g"
 fi
 
+alias dotup="git -C ~/.dotfiles pull"
+
 # vi:syntax=sh
