@@ -56,6 +56,8 @@ opt.autoread = true                                -- automatically reloads file
 
 opt.updatetime = 100                               -- decrease the time for popups and save
 
+opt.exrc = true                                    -- allow projects to include a local .vimrc
+
 opt.clipboard:prepend { 'unnamed', 'unnamedplus' } -- OS clipboards
 
 -- Better git diff algorithm (usually)
