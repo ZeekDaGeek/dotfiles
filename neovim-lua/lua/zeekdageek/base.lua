@@ -54,6 +54,8 @@ opt.splitright = true                              -- open veritical splits to t
 
 opt.autoread = true                                -- automatically reloads files changed externally
 
+opt.updatetime = 100                               -- decrease the time for popups and save
+
 opt.clipboard:prepend { 'unnamed', 'unnamedplus' } -- OS clipboards
 
 -- Better git diff algorithm (usually)
