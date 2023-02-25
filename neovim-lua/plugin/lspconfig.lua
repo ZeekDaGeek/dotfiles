@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
     local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = false })
     vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
-        command = "<Cmd>Lspsaga show_line_diagnostics<CR>",
+        command = "Lspsaga show_line_diagnostics",
         group = group,
     })
 end
