@@ -16,7 +16,9 @@ local enable_format_on_save = function(_, bufnr)
 end
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+
+-- Diagnostics related keymaps
+vim.keymap.set('n', '<leader>e', "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
 vim.keymap.set('n', '<leader>dl', '<Cmd>Telescope diagnostics<CR>', opts) -- pneumonic: dl = diagnostics list
 
 -- Use an on_attach function to only map the following keys
@@ -37,6 +39,13 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
     --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts) -- replaced by lspsaga
     buf_set_keymap('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+
+    local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = false })
+    vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        command = "<Cmd>Lspsaga show_line_diagnostics<CR>",
+        group = group,
+    })
 end
 
 protocol.CompletionItemKind = {
