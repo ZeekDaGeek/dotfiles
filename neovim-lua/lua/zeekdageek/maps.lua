@@ -47,5 +47,7 @@ map.set('n', '<leader>S', function()
     ]]
 end)
 
+-- close buffer
+map.set('n', '<leader>x', '<Cmd>Bd<CR>')
 
 
