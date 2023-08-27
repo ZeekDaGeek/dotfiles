@@ -2,7 +2,9 @@
 -- RIP backwards compatability with vim.
 require('zeekdageek.base')
 require('zeekdageek.maps')
-require('zeekdageek.plugins')
+if not vim.g.vscode then
+    require('zeekdageek.plugins')
+end
 
 -- helper functions
 local fn = vim.fn
