@@ -98,17 +98,11 @@ return packer.startup({ function(use)
     -- gS and gJ to expand / contract one-liners
     use 'AndrewRadev/splitjoin.vim' --vim
 
-    -- note taking and organization file type
-    use {
-        'nvim-orgmode/orgmode',
-        config = function()
-            require('orgmode').setup_ts_grammar()
+    -- use qcalc cli in neovim
+    use 'Apeiros-46B/qalc.nvim' --vim
 
-            require('orgmode').setup {
-                org_hide_leading_stars = true,
-            }
-        end
-    }
+    -- note taking and organization file type
+    use 'nvim-orgmode/orgmode'
     use {
         'akinsho/org-bullets.nvim',
         config = function()
