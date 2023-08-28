@@ -4,6 +4,12 @@
 --   vim script edits only the modified sections
 
 --vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = '#3B4252' })
+-- Safely load Nord
+local colorscheme = 'nord'
+local ok, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
+if not ok then
+    vim.notify("Unable to load 'nord' colorscheme.")
+end
 
 -- Tired of adding and removing debug code? Me too!
 local _DEBUG = false
@@ -195,3 +201,5 @@ local telescope = pcall(require, 'telescope')
 if (telescope) then
     vim.keymap.set('n', '<leader>fi', '<Cmd>Telescope highlights<CR>')
 end
+
+
