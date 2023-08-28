@@ -21,15 +21,8 @@ telescope.setup {
     }
 }
 
-local fzf_status, _ = pcall(require, 'fzf_lib')
-if (not fzf_status) then
-    telescope.load_extension('fzf')
-end
-
-local fb_status, _ = pcall(require, 'telescope-file-browser')
-if (not fb_status) then
-    telescope.load_extension('file_browser')
-end
+telescope.load_extension('fzf')
+telescope.load_extension('file_browser')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})

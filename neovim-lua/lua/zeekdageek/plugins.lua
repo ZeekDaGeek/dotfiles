@@ -1,27 +1,31 @@
--- Automatically install packer on load
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+-- Automatically install lazy.nvim on load
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+-- Nord theme that matches everything
+-- screen causes 256color issues, detect it
+vim.cmd [[
+    if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\([-\.].*\)\?$'
+        set notermguicolors
+    elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\([-\.].*\)\?$'
+        set termguicolors
+    elseif $TERM =~ '^\(xterm\)\([-\.].*\)\?$'
+        set termguicolors
+    end
+]]
 
-local packer = require('packer')
-
-packer.reset()
-packer.init {
-    auto_clean = false
-}
-
-
-return packer.startup({ function(use)
-    use 'wbthomason/packer.nvim'
+local plugins = {
+    'wbthomason/packer.nvim',
 
     -- Sorry for the excess comments, it helps me keep track of plugins that
     -- I'm not actually using and should be uninstalled.
@@ -29,146 +33,135 @@ return packer.startup({ function(use)
     -- anything marked --vim is not yet lua
 
     -- required for many plugins
-    use 'kyazdani42/nvim-web-devicons'
+    'nvim-tree/nvim-web-devicons',
 
     -- Fancy top and bottom status lines
-    use {
+    {
         'akinsho/bufferline.nvim',
-        tag = "v3.*",
+        version = '*',
+        dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('bufferline').setup {}
         end
-    }
-    use 'nvim-lualine/lualine.nvim'
+    },
+    'nvim-lualine/lualine.nvim',
 
-    -- Nord theme that matches everything
-    -- screen causes 256color issues, detect it
-    vim.cmd [[
-        if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\([-\.].*\)\?$'
-            set notermguicolors
-        elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\([-\.].*\)\?$'
-            set termguicolors
-        elseif $TERM =~ '^\(xterm\)\([-\.].*\)\?$'
-            set termguicolors
-        end
-    ]]
 
     -- only when no gui colors
-    use { 'arcticicestudio/nord-vim', cond = function() return (not vim.opt.termguicolors:get()) end }
+    { 'arcticicestudio/nord-vim', cond = function() return (not vim.opt.termguicolors:get()) end },
     -- only with gui colors
-    use { 'shaunsingh/nord.nvim', cond = function() return (vim.opt.termguicolors:get()) end }
+    { 'shaunsingh/nord.nvim', cond = function() return (vim.opt.termguicolors:get()) end },
 
     --  Tree style file browser
-    use {
+    {
         'nvim-tree/nvim-tree.lua',
         tag = 'nightly'
-    }
+    },
 
     --  Close buffers without closing the pane
-    use 'moll/vim-bbye'
+    'moll/vim-bbye',
 
     --  Git tool for vim
-    use 'tpope/vim-fugitive'
-    use 'lewis6991/gitsigns.nvim'
+    'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim',
 
     -- A start screen when opening vim (my form of project management)
-    use 'mhinz/vim-startify' --vim
+    'mhinz/vim-startify', --vim
 
     -- Ctrl+HJKL move between vim panes first then Tmux panes
-    use 'christoomey/vim-tmux-navigator' --vim
+    'christoomey/vim-tmux-navigator', --vim
 
     -- Handle whitespace better when pasting
     --use 'sickill/vim-pasta' --vim
 
     -- Add the verb s for surround (ds' = delete surrounding ')
-    use {
+    {
         'kylechui/nvim-surround',
-        tag = '*',
+        version = '*',
+        event = 'VeryLazy',
         config = function()
             require('nvim-surround').setup()
         end,
-    }
+    },
 
     -- Make pairs of quotes / brackets easier
-    use 'windwp/nvim-autopairs'
+    'windwp/nvim-autopairs',
 
     -- Space align text using :Tab
-    use 'godlygeek/tabular' --vim
+    'godlygeek/tabular', --vim
 
     -- gS and gJ to expand / contract one-liners
-    use 'AndrewRadev/splitjoin.vim' --vim
+    'AndrewRadev/splitjoin.vim', --vim
 
     -- use qcalc cli in neovim
-    use 'Apeiros-46B/qalc.nvim' --vim
+    'Apeiros-46B/qalc.nvim', --vim
 
     -- note taking and organization file type
-    use 'nvim-orgmode/orgmode'
-    use {
+    'nvim-orgmode/orgmode',
+    {
         'akinsho/org-bullets.nvim',
         config = function()
             require('org-bullets').setup {}
         end
-    }
+    },
     -- orgmode style tables
-    use 'dhruvasagar/vim-table-mode'
+    'dhruvasagar/vim-table-mode',
 
     -- automatically deal with swap files
-    use 'gioele/vim-autoswap' --vim
+    'gioele/vim-autoswap', --vim
 
     -- toggle making a pane fullscreen
-    use 'dhruvasagar/vim-zoom'
+    'dhruvasagar/vim-zoom',
 
     -- emmet expansion (eg. ul>li*5)
-    use 'mattn/emmet-vim'
+    'mattn/emmet-vim',
 
     -- adds :DirDiff for comparing folders
-    use 'will133/vim-dirdiff'
+    'will133/vim-dirdiff',
 
     -- a floating window search utility
-    use {
+    {
         'nvim-telescope/telescope.nvim',
-        requires = 'nvim-lua/plenary.nvim'
-    }
-    use {
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
+    {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make'
-    }
-    use "nvim-telescope/telescope-file-browser.nvim"
+        build = 'make'
+    },
+    "nvim-telescope/telescope-file-browser.nvim",
 
     -- a engine for syntax highlighing
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
-    }
+        build = ':TSUpdate',
+    },
 
     -- language server providers
-    use 'onsails/lspkind-nvim' -- vscode-like pictograms
-    use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-    use 'hrsh7th/cmp-path' -- nvim-cmp source for file paths
-    use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-    use 'hrsh7th/nvim-cmp' -- Completion
-    use 'neovim/nvim-lspconfig' -- LSP
-    use 'jose-elias-alvarez/null-ls.nvim' -- to inject LSP diagnostics, code actions, and more
-    use 'williamboman/mason.nvim' -- auto install + manage LSPs
-    use 'williamboman/mason-lspconfig.nvim'
+    'onsails/lspkind-nvim', -- vscode-like pictograms
+    'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
+    'hrsh7th/cmp-path', -- nvim-cmp source for file paths
+    'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim's built-in LSP
+    'hrsh7th/nvim-cmp', -- Completion
+    'neovim/nvim-lspconfig', -- LSP
+    'jose-elias-alvarez/null-ls.nvim', -- to inject LSP diagnostics, code actions, and more
+    'williamboman/mason.nvim', -- auto install + manage LSPs
+    'williamboman/mason-lspconfig.nvim',
 
-    use 'glepnir/lspsaga.nvim' -- LSP UIs
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
+    'glepnir/lspsaga.nvim', -- LSP UIs
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
 
-    use({
+    {
         "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
 
     ---- Plugins that are mirrored by a vim-scripts GitHub bot (no longer updated)
     -- Save folds and cursor position on save
-    use 'vim-scripts/restore_view.vim'
+    'vim-scripts/restore_view.vim',
 
+}
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
+local opts = {}
 
-end,
-})
+require("lazy").setup(plugins, opts)
