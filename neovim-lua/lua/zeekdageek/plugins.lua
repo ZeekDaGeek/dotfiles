@@ -25,11 +25,6 @@ vim.cmd [[
 ]]
 
 local plugins = {
-    'wbthomason/packer.nvim',
-
-    -- Sorry for the excess comments, it helps me keep track of plugins that
-    -- I'm not actually using and should be uninstalled.
-
     -- anything marked --vim is not yet lua
 
     -- required for many plugins
@@ -111,7 +106,7 @@ local plugins = {
     'gioele/vim-autoswap', --vim
 
     -- toggle making a pane fullscreen
-    'dhruvasagar/vim-zoom',
+    'dhruvasagar/vim-zoom', --vim
 
     -- emmet expansion (eg. ul>li*5)
     'mattn/emmet-vim',
