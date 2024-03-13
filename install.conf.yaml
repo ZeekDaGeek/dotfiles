@@ -65,10 +65,10 @@
     command: '[ ! -f ~/.config/nvim/init.lua ] && cp neovim-lua/init.lua ~/.config/nvim/init.lua || echo "nvim/init.lua already exists, respecting the users changes."'
     quiet: true
 #bootstrap nvim
-- shell:
-  -
-    command: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
-    description: 'Initializing Neovim plugins'
+#- shell:
+#  -
+#    command: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+#    description: 'Initializing Neovim plugins'
 
 
 ## File managers
