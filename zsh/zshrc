@@ -63,7 +63,7 @@ zplug "chrissicool/zsh-256color"
 #zplug "robbyrussell/oh-my-zsh"
 zplug "themes/clean", from:oh-my-zsh, as:theme
 #zplug "~/.config/zsh/clean-custom.zsh-theme", from:local, as:theme, at:next
-zplug "zpm-zsh/dircolors-material"
+zplug "zpm-zsh/dircolors-neutral", use:dircolors-neutral.plugin.zsh
 
 zplug "momo-lab/zsh-abbrev-alias"               # create abbrivations that get auto expanded vim style
 zplug "zpm-zsh/figures"                         # unicode symbols in variables for easy access
