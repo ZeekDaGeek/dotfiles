@@ -1,7 +1,8 @@
 local status, orgmode = pcall(require, 'orgmode')
 if (not status) then return end
 
-orgmode.setup_ts_grammar()
+--depricated
+-- orgmode.setup_ts_grammar()
 
 -- Treesitter configuration
 local tsStatus, tsConfigs = pcall(require, 'nvim-treesitter.configs')
