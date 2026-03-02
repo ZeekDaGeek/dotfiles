@@ -1,6 +1,3 @@
-local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
-
 local protocol = require('vim.lsp.protocol')
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
@@ -24,7 +21,7 @@ vim.keymap.set('n', '<leader>dl', '<Cmd>Telescope diagnostics<CR>', opts) -- pne
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     --Enable completion triggered by <c-x><c-o>
@@ -82,19 +79,21 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(
     protocol.make_client_capabilities()
 )
 
-nvim_lsp.flow.setup {
+vim.lsp.config('flow', {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
+--vim.lsp.enable('flow')
 
-nvim_lsp.ts_ls.setup {
+vim.lsp.config('ts_ls', {
     on_attach = on_attach,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx", "vue" },
     cmd = { "typescript-language-server", "--stdio" },
     capabilities = capabilities
-}
+})
+--vim.lsp.enable('ts_ls')
 
-nvim_lsp.lua_ls.setup {
+vim.lsp.config('lua_ls', {
     on_init = function(client)
         if client.workspace_folders then
             local path = client.workspace_folders[1].name
@@ -126,17 +125,12 @@ nvim_lsp.lua_ls.setup {
     settings = {
         Lua = {}
     }
-}
+})
 
-nvim_lsp.cssls.setup {
+vim.lsp.config('cssls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
-
---nvim_lsp.vuels.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---}
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
